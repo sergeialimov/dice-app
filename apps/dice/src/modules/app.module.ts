@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { HealthController } from '../controllers/health.controller';
-import { UserService } from '../services/user.service';
+import { StorageModule } from '@libs/storage';
 import { UserResolver } from '../resolvers/user.resolver';
 
 @Module({
@@ -13,10 +13,10 @@ import { UserResolver } from '../resolvers/user.resolver';
       autoSchemaFile: true,
       playground: true,
     }),
+    StorageModule,
   ],
   controllers: [HealthController],
   providers: [
-    UserService,
     UserResolver,
   ],
 })
