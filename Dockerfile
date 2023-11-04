@@ -10,10 +10,8 @@ RUN yarn install --immutable
 
 COPY . .
 
-
 # RUN yarn build
 RUN yarn build && ls -al /usr/src/app/dist
-
 
 
 # Stage 2: Setup the runtime env
