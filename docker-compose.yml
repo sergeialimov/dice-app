@@ -1,10 +1,39 @@
-version: '3'
+version: '3.8'
 services:
   app:
     build: .
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules # To avoid overwriting node_modules from the container with the host's node_modules
+      - /usr/src/app/node_modules
     ports:
       - "3000:3000"
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: your_username
+      DATABASE_PASSWORD: your_password
+      DATABASE_NAME: your_database
     command: yarn nx serve dice --watch
+    depends_on:
+      - db
+    # networks:
+    #   - mynetwork
+
+  db:
+    image: postgres:latest
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: your_database
+    ports:
+      - "5432:5432"
+    # networks:
+    #   - mynetwork
+
+# networks:
+#   mynetwork:
+#     driver: bridge
+
+volumes:
+  pgdata:
