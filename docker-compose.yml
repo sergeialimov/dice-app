@@ -9,8 +9,8 @@ services:
       - "3000:3000"
     environment:
       DATABASE_HOST: db
-      DATABASE_USER: your_username
-      DATABASE_PASSWORD: your_password
+      DATABASE_USER: dice
+      DATABASE_PASSWORD: dice
       DATABASE_NAME: your_database
     command: yarn nx serve dice --watch
     depends_on:
@@ -23,9 +23,9 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: your_username
-      POSTGRES_PASSWORD: your_password
-      POSTGRES_DB: your_database
+      POSTGRES_USER: dice
+      POSTGRES_PASSWORD: dice
+      POSTGRES_DB: dice
     ports:
       - "5432:5432"
     # networks:

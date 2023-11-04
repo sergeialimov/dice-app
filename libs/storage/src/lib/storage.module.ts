@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { User } from './models/user.model';
-import { Bet } from './models/bet.model';
+import { Bet, User } from './models';
+import { UserService, BetService } from './services';
+import { BetType } from './dtos';
 
 @Module({
   imports: [
@@ -9,10 +10,12 @@ import { Bet } from './models/bet.model';
       dialect: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: 'your_username',
-      password: 'your_password',
-      database: 'your_database',
+      username: 'dice',
+      password: 'dice',
+      database: 'dice',
       models: [User, Bet],
+      // services: [UserService, BetService],
+      // dtos: [BetType],
       autoLoadModels: true,
       synchronize: true, // For development only!
     }),
