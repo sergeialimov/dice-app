@@ -2,7 +2,12 @@
   "name": "@dice/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "serve": "nx serve dice",
+    "build": "nx build dice",
+    "lint": "nx lint dice",
+    "test": "nx test dice"
+  },
   "private": true,
   "dependencies": {
     "@nestjs/common": "^10.0.2",
