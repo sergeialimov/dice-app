@@ -1,22 +1,22 @@
 version: '3.8'
 services:
-  app:
-    build: .
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    ports:
-      - "3000:3000"
-    environment:
-      DATABASE_HOST: db
-      DATABASE_USER: dice
-      DATABASE_PASSWORD: dice
-      DATABASE_NAME: your_database
-    command: yarn nx serve dice --watch
-    depends_on:
-      - db
-    # networks:
-    #   - mynetwork
+  # app:
+  #   build: .
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     DATABASE_HOST: db
+  #     DATABASE_USER: dice
+  #     DATABASE_PASSWORD: dice
+  #     DATABASE_NAME: your_database
+  #   command: yarn nx serve dice --watch
+  #   depends_on:
+  #     - db
+  #   # networks:
+  #   #   - mynetwork
 
   db:
     image: postgres:latest

@@ -4,9 +4,11 @@ From node:${NODE_VERSION} as build
 
 WORKDIR /usr/src/app
 
-COPY package.json yarn.lock ./
+RUN yarn config set strict-ssl false
 
-RUN yarn install --immutable
+COPY package.json yarn.lock ./
+CMD echo "Yarn version:" && yarn --version
+RUN yarn install
 
 COPY . .
 
