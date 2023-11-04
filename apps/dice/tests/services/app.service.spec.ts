@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 
-import { AppService } from './app.service';
+import { AppService } from '../../src/app/services/app.service';
 
 describe('AppService', () => {
   let service: AppService;
@@ -14,8 +14,8 @@ describe('AppService', () => {
   });
 
   describe('getData', () => {
-    it('should return "Hello API"', () => {
-      expect(service.getData()).toEqual({ message: 'Hello API' });
+    it('should return "Hello Dice API"', () => {
+      expect(service.getData()).toEqual({ message: 'Hello Dice API' });
     });
   });
 });
