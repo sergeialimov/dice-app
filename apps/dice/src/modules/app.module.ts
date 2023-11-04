@@ -3,8 +3,8 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { HealthController } from '../controllers/health.controller';
-import { AppService } from '../services/app.service';
-import { DiceResolver } from '../resolvers/dice.resolver';
+import { UserService } from '../services/user.service';
+import { UserResolver } from '../resolvers/user.resolver';
 
 @Module({
   imports: [
@@ -16,8 +16,8 @@ import { DiceResolver } from '../resolvers/dice.resolver';
   ],
   controllers: [HealthController],
   providers: [
-    AppService,
-    DiceResolver,
+    UserService,
+    UserResolver,
   ],
 })
 export class AppModule {}
