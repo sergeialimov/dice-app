@@ -2,7 +2,7 @@ import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
 import { User } from '../models';
 
 @ObjectType()
-export class BetType {
+export class BetDto {
   @Field(type => Int)
   id: number;
 
