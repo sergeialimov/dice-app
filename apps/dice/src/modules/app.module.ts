@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { AppController } from '../controllers/app.controller';
+import { HealthController } from '../controllers/health.controller';
 import { AppService } from '../services/app.service';
 import { DiceResolver } from '../resolvers/dice.resolver';
 
@@ -14,7 +14,7 @@ import { DiceResolver } from '../resolvers/dice.resolver';
       playground: true,
     }),
   ],
-  controllers: [AppController],
+  controllers: [HealthController],
   providers: [
     AppService,
     DiceResolver,
