@@ -13,6 +13,13 @@ export class UserResolver {
 
     return user;
   }
+
+  @Query(() => [UserDto])
+  async getUserList(): Promise<UserDto[]> {
+    const users = await this.userService.getUserList();
+
+    return users;
+  }
 }
 
 
