@@ -1,0 +1,14 @@
+{
+  "development": {
+    "dialect": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "dice",
+    "password": "",
+    "database": "dice"
+  },
+  "test": {
+  },
+  "production": {
+  }
+}
