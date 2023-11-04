@@ -1,7 +1,10 @@
 import { Table, Column, Model, DataType, PrimaryKey, AutoIncrement, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import { User } from './user.model';
 
-@Table({ timestamps: false })
+@Table({
+  tableName: 'bets',
+  timestamps: false
+})
 export class Bet extends Model<Bet> {
   @PrimaryKey
   @AutoIncrement

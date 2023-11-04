@@ -6,19 +6,17 @@ export class BetResolver {
   constructor(private readonly betService: BetService) {}
 
   @Query(returns => BetDto)
-  async bet(@Args('id', { type: () => Int }) id: number): Promise<Bet> {
+  async getBet(@Args('id', { type: () => Int }) id: number): Promise<Bet | null> {
     return this.betService.getBet(id);
   }
 
   @Query(returns => [BetDto])
-  async bets(): Promise<Bet[]> {
+  async getBetList(): Promise<Bet[]> {
     return this.betService.getBetList();
   }
 
   @Query(returns => [BetDto])
-  async bestBetPerUser(
-    @Args('limit', { type: () => Int }) limit: number,
-  ): Promise<Bet[]> {
+  async getBestBetPerUser(@Args('limit', { type: () => Int }) limit: number): Promise<BetDto[]> {
     return this.betService.getBestBetPerUser(limit);
   }
 

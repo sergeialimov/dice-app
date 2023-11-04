@@ -4,7 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { HealthController } from '../controllers/health.controller';
 import { StorageModule } from '@libs/storage';
-import { UserResolver } from '../resolvers/user.resolver';
+import { UserResolver, BetResolver } from '../resolvers/';
 
 @Module({
   imports: [
@@ -18,6 +18,7 @@ import { UserResolver } from '../resolvers/user.resolver';
   controllers: [HealthController],
   providers: [
     UserResolver,
+    BetResolver,
   ],
 })
 export class AppModule {}

@@ -59,6 +59,13 @@ export class BetService {
       user.balance += payout - betAmount;
       await user.save({ transaction });
 
+      await bet.reload({
+        include: [{
+          model: User,
+        }],
+        transaction,
+      });
+
       await transaction.commit();
 
       return bet;

@@ -1,7 +1,7 @@
 import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
-import { User } from '../models';
+import { UserDto } from '../dtos';
 
-@ObjectType()
+@ObjectType('Bet')
 export class BetDto {
   @Field(type => Int)
   id: number;
@@ -21,6 +21,6 @@ export class BetDto {
   @Field(type => Boolean)
   win: boolean;
 
-  @Field(type => User)
-  user: User;
+  @Field(type => UserDto)
+  user: UserDto;
 }
