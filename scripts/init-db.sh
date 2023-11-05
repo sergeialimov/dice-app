@@ -5,9 +5,9 @@
 # 'template1' is also a common choice for initialization scripts.
 
 # Connect to the default database and run your SQL commands
-psql -d dice -U dice -h localhost <<EOF
-CREATE ROLE dice WITH LOGIN PASSWORD 'dice';
-CREATE DATABASE dice OWNER dice;
+psql -d database -U dice_user -h localhost <<EOF
+CREATE ROLE dice WITH LOGIN PASSWORD 'dice_password';
+CREATE DATABASE dice_database OWNER dice_password;
 EOF
 
 # Any other initialization commands go here
