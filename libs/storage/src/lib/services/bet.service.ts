@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Sequelize } from 'sequelize-typescript';
 import { Bet, User } from '../models';
+import { BetDto } from '../dtos';
 
 @Injectable()
 export class BetService {
@@ -20,19 +21,49 @@ export class BetService {
     return this.betModel.findAll({ include: [User] });
   }
 
-  async getBestBetPerUser(limit: number): Promise<Bet[]> {
+  async getBestBetPerUser(limit: number): Promise<BetDto[]> {
     const bestBets = await this.betModel.findAll({
       attributes: [
+        'id',
         'userId',
-        [Sequelize.fn('MAX', Sequelize.col('payout')), 'bestPayout'],
+        'betAmount',
+        'chance',
+        'win',
+        [Sequelize.fn('MAX', Sequelize.col('payout')), 'payout'],
       ],
-      group: ['userId'],
-      order: [[Sequelize.col('bestPayout'), 'DESC']],
-      limit: limit,
-      include: [{ model: User, attributes: ['name'] }],
+      group: ['Bet.userId', 'Bet.id', 'Bet.betAmount', 'Bet.chance', 'Bet.win', 'user.id'],
+      order: [[Sequelize.fn('MAX', Sequelize.col('payout')), 'DESC']],
+      limit,
+      include: [{
+        model: User,
+        attributes: ['id', 'name', 'balance'],
+        on: Sequelize.where(Sequelize.col('Bet.userId'), '=', Sequelize.col('user.id'))
+      }],
     });
 
-    return bestBets as unknown as Bet[];
+    const res = bestBets.map(bet => {
+      const betData = bet.dataValues;
+
+      const user = betData.user ? betData.user.dataValues : null;
+
+      const payout = betData.payout;
+
+      return {
+        id: betData.id,
+        betAmount: betData.betAmount,
+        chance: betData.chance,
+        win: betData.win,
+        userId: betData.userId,
+        payout: payout,
+        user: user ? {
+          id: user.id,
+          name: user.name,
+          balance: user.balance,
+        } : null,
+      };
+    });
+
+    return res as BetDto[];
   }
 
   async createBet(userId: number, betAmount: number, chance: number): Promise<Bet> {
